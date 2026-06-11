@@ -1,307 +1,104 @@
 {% extends 'base.html' %}
-
 {% block title %}
 Analysis
 {% endblock %}
-
 {% block content %}
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <div class="result-header">
-
     <div>
-
-        <div class="eyebrow">
-            GENERATED ANALYSIS
-        </div>
-
-        <h1>
-            Research Interpretation
-        </h1>
-
-    </div>
-
-</div>
-
-<!-- =====================================================
-     ACTIONS
-===================================================== -->
-
+        <div class="eyebrow">GENERATED ANALYSIS</div>
+        <h1>Research Interpretation</h1>
+    </div></div>
 <div class="action-row">
-
-    <a href="/download/{{ analysis_id }}"
-       class="download-btn">
-
-        Download PDF
-
-    </a>
-
+    <a href="/download/{{ analysis_id }}" class="download-btn">Download PDF</a>
 </div>
-
-<!-- =====================================================
-     METADATA
-===================================================== -->
-
 <div class="metadata-grid">
-
-    <!-- TITLE -->
-
     <div class="metadata-card">
-
-        <div class="metadata-label">
-            TITLE
-        </div>
-
-        <div class="metadata-value">
-
-            {{ metadata.title }}
-
-        </div>
-
+        <div class="metadata-label">TITLE</div>
+        <div class="metadata-value">{{ metadata.title }}</div>
     </div>
-
-    <!-- AUTHOR -->
-
     <div class="metadata-card">
-
-        <div class="metadata-label">
-            AUTHOR
-        </div>
-
-        <div class="metadata-value">
-
-            {{ metadata.author }}
-
-        </div>
-
+        <div class="metadata-label">AUTHOR</div>
+        <div class="metadata-value">{{ metadata.author }}</div>
     </div>
-
-    <!-- PAGES -->
-
     <div class="metadata-card">
-
-        <div class="metadata-label">
-            PAGES
-        </div>
-
-        <div class="metadata-value">
-
-            {{ metadata.pages }}
-
-        </div>
-
+        <div class="metadata-label">PAGES</div>
+        <div class="metadata-value">{{ metadata.pages }}</div>
     </div>
-
 </div>
-
-<!-- =====================================================
-     RESULT LAYOUT
-===================================================== -->
-
 <div class="result-layout">
-
     <section class="result-content">
-
-        <!-- =================================================
-             SUMMARY
-        ================================================== -->
-
         <div class="result-block open"
              id="summary">
-
             <button class="collapse-toggle">
-
                 <div>
-
-                    <div class="section-label">
-                        SUMMARY
-                    </div>
-
-                    <h2>
-                        Research Overview
-                    </h2>
-
+                    <div class="section-label">SUMMARY</div>
+                    <h2>Research Overview</h2>
                 </div>
-
-                <span class="toggle-icon">
-                    +
-                </span>
-
+                <span class="toggle-icon">+</span>
             </button>
-
             <div class="collapse-content">
-
                 <div class="markdown-content">
-
                     {{ data["SUMMARY"] | safe }}
-
                 </div>
-
             </div>
-
         </div>
-
-        <!-- =================================================
-             CORE IDEA
-        ================================================== -->
-
         <div class="result-block open"
              id="idea">
-
             <button class="collapse-toggle">
-
-                <div>
-
-                    <div class="section-label">
-                        CORE IDEA
-                    </div>
-
-                    <h2>
-                        Underlying Concept
-                    </h2>
-
-                </div>
-
-                <span class="toggle-icon">
-                    +
-                </span>
-
+                <div><div class="section-label">CORE IDEA</div><h2>Underlying Concept</h2></div>
+                <span class="toggle-icon">+</span>
             </button>
-
             <div class="collapse-content">
-
                 <div class="markdown-content">
-
                     {{ data["CORE_IDEA"] | safe }}
-
                 </div>
-
             </div>
-
         </div>
-
-        <!-- =================================================
-             TECH STACK
-        ================================================== -->
-
         <div class="result-block open"
              id="stack">
-
             <button class="collapse-toggle">
-
                 <div>
-
-                    <div class="section-label">
-                        TECH STACK
-                    </div>
-
-                    <h2>
-                        Suggested Technologies
-                    </h2>
-
+                    <div class="section-label">TECH STACK</div>
+                    <h2>Suggested Technologies</h2>
                 </div>
-
-                <span class="toggle-icon">
-                    +
-                </span>
-
+                <span class="toggle-icon">+</span>
             </button>
-
             <div class="collapse-content">
-
                 <div class="markdown-content">
-
                     {{ data["TECH_STACK"] | safe }}
-
                 </div>
-
             </div>
-
         </div>
-
-        <!-- =================================================
-             IMPLEMENTATION
-        ================================================== -->
 
         <div class="result-block open"
              id="implementation">
-
             <button class="collapse-toggle">
-
-                <div>
-
-                    <div class="section-label">
-                        IMPLEMENTATION
-                    </div>
-
-                    <h2>
-                        Engineering Workflow
-                    </h2>
-
-                </div>
-
-                <span class="toggle-icon">
-                    +
-                </span>
-
+                <div><div class="section-label">IMPLEMENTATION</div><h2>Engineering Workflow</h2></div>
+                <span class="toggle-icon">+</span>
             </button>
-
             <div class="collapse-content">
-
                 <div class="markdown-content">
-
                     {{ data["IMPLEMENTATION"] | safe }}
-
                 </div>
-
             </div>
-
         </div>
-
-        <!-- =================================================
-             FOLDER STRUCTURE
-        ================================================== -->
-
         <div class="result-block open"
              id="structure">
-
             <button class="collapse-toggle">
-
                 <div>
-
                     <div class="section-label">
                         FOLDER STRUCTURE
                     </div>
-
-                    <h2>
-                        Project Architecture
-                    </h2>
-
-                </div>
-
-                <span class="toggle-icon">
-                    +
-                </span>
-
+                    <h2>Project Architecture</h2>
+               </div>
+                <span class="toggle-icon">+</span>
             </button>
-
             <div class="collapse-content">
-
                 <div class="markdown-content">
-
                     {{ data["FOLDER_STRUCTURE"] | safe }}
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
 </div>
-
 {% endblock %}
