@@ -28,6 +28,5 @@ def generate_response(paper_text):
     Research Paper:
     {paper_text[:12000]}
     """
-    response = model.generate_content(prompt,generation_config={
-        "max_output_tokens": 1200})
+    response = model.generate_content(prompt)
     return response.text
