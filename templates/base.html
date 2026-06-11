@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        {% block title %}
+        {% endblock %}
+
+    </title>
+
+    <!-- GOOGLE FONT -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}?v=3">
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         THEME TOGGLE
+    ====================================================== -->
+
+    <button id="theme-toggle"
+            class="theme-toggle">
+
+        🌙
+
+    </button>
+
+    <div class="app-layout">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                ResearchDecode
+
+            </div>
+
+            <!-- =================================================
+                 MENU
+            ================================================== -->
+
+            <div class="sidebar-section">
+
+                <div class="sidebar-label">
+
+                    Workspace
+
+                </div>
+
+                <a href="/"
+                   class="nav-item active">
+
+                    Upload Paper
+
+                </a>
+
+                <a href="#"
+                   class="nav-item">
+
+                    Saved Projects
+
+                </a>
+
+                <a href="#"
+                   class="nav-item">
+
+                    Archive
+
+                </a>
+
+            </div>
+
+            <!-- =================================================
+                 HISTORY
+            ================================================== -->
+
+            <div class="sidebar-section">
+
+                <div class="sidebar-label">
+
+                    Recent Analyses
+
+                </div>
+
+                <!-- SEARCH -->
+
+                <input type="text"
+                       id="search-analysis"
+                       placeholder="Search analyses..."
+                       class="search-input">
+
+                <!-- HISTORY LIST -->
+
+                {% for analysis in analyses %}
+
+                <div class="history-wrapper">
+
+                    <a href="/analysis/{{ analysis.id }}"
+                       class="history-item">
+
+                        {{ analysis.filename }}
+
+                    </a>
+
+                    <a href="/delete/{{ analysis.id }}"
+                       class="delete-btn">
+
+                        ✕
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </aside>
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+
+        <main class="main-content">
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+    <!-- =====================================================
+         LOADING OVERLAY
+    ====================================================== -->
+
+    <div class="loading-overlay"
+         id="loading-overlay">
+
+        <div class="loader-wrapper">
+
+            <div class="loader-spinner"></div>
+
+            <div class="loader-text">
+
+                Analyzing Research Paper...
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // =================================================
+            // LOADING OVERLAY
+            // =================================================
+
+            const form =
+                document.getElementById("upload-form");
+
+            if(form){
+
+                form.addEventListener("submit", () => {
+
+                    const overlay =
+                        document.getElementById("loading-overlay");
+
+                    if(overlay){
+
+                        overlay.classList.add("show");
+                    }
+                });
+            }
+
+            // =================================================
+            // FILE NAME DISPLAY
+            // =================================================
+
+            const input =
+                document.getElementById("pdf-input");
+
+            const selectedFile =
+                document.getElementById("selected-file");
+
+            if(input && selectedFile){
+
+                input.addEventListener("change", () => {
+
+                    if(input.files.length > 0){
+
+                        selectedFile.textContent =
+                            input.files[0].name;
+                    }
+                });
+            }
+
+            // =================================================
+            // COLLAPSIBLE SECTIONS
+            // =================================================
+
+            const toggles =
+                document.querySelectorAll(".collapse-toggle");
+
+            toggles.forEach(toggle => {
+
+                toggle.addEventListener("click", () => {
+
+                    const block =
+                        toggle.closest(".result-block");
+
+                    if(block){
+
+                        block.classList.toggle("open");
+                    }
+                });
+            });
+
+            // =================================================
+            // THEME TOGGLE
+            // =================================================
+
+            const themeToggle =
+                document.getElementById("theme-toggle");
+
+            // LOAD SAVED THEME
+
+            if(localStorage.getItem("theme") === "light"){
+
+                document.documentElement.classList.add("light-mode");
+
+                themeToggle.innerHTML = "☀️";
+            }
+
+            // TOGGLE CLICK
+
+            if(themeToggle){
+
+                themeToggle.addEventListener("click", () => {
+
+                    document.documentElement.classList.toggle("light-mode");
+
+                    if(document.documentElement.classList.contains("light-mode")){
+
+                        localStorage.setItem("theme", "light");
+
+                        themeToggle.innerHTML = "☀️";
+
+                    }else{
+
+                        localStorage.setItem("theme", "dark");
+
+                        themeToggle.innerHTML = "🌙";
+                    }
+                });
+            }
+
+            // =================================================
+            // SEARCH ANALYSES
+            // =================================================
+
+            const searchInput =
+                document.getElementById("search-analysis");
+
+            if(searchInput){
+
+                searchInput.addEventListener("keyup", () => {
+
+                    const value =
+                        searchInput.value.toLowerCase();
+
+                    const items =
+                        document.querySelectorAll(".history-wrapper");
+
+                    items.forEach(item => {
+
+                        const text =
+                            item.textContent.toLowerCase();
+
+                        item.style.display =
+                            text.includes(value)
+                            ? "flex"
+                            : "none";
+                    });
+                });
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

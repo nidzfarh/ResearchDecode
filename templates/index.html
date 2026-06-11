@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ResearchDecode
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="workspace-header">
+
+    <div>
+
+        <div class="eyebrow">
+            AI RESEARCH WORKSPACE
+        </div>
+
+        <h1>
+            Research Paper Interpreter
+        </h1>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     GRID
+===================================================== -->
+
+<div class="workspace-grid">
+
+    <!-- =================================================
+         LEFT SECTION
+    ================================================== -->
+
+    <section class="upload-section">
+
+        <div class="panel">
+
+            <!-- =========================================
+                 PANEL HEADER
+            ========================================== -->
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="panel-label">
+                        Upload
+                    </div>
+
+                    <h2>
+                        Analyze Research Paper
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <!-- =========================================
+                 DESCRIPTION
+            ========================================== -->
+
+            <p class="panel-text">
+
+                Upload a research paper PDF to generate
+                implementation workflows,
+                architecture ideas,
+                engineering plans,
+                technical summaries,
+                and deployable project structures.
+
+            </p>
+
+            <!-- =========================================
+                 FORM
+            ========================================== -->
+
+            <form action="/upload"
+                  method="POST"
+                  enctype="multipart/form-data"
+                  id="upload-form">
+
+                <!-- =====================================
+                     UPLOAD ZONE
+                ====================================== -->
+
+                <label class="upload-zone"
+                       for="pdf-input"
+                       id="upload-zone">
+
+                    <div class="upload-icon">
+
+                        ↑
+
+                    </div>
+
+                    <div class="upload-title">
+
+                        Drag & Drop Research Paper
+
+                    </div>
+
+                    <div class="upload-subtitle">
+
+                        or click to browse PDF files
+
+                    </div>
+
+                    <div class="selected-file"
+                         id="selected-file">
+
+                        No file selected
+
+                    </div>
+
+                    <input type="file"
+                           name="pdf"
+                           id="pdf-input"
+                           accept=".pdf"
+                           required>
+
+                </label>
+
+                <!-- =====================================
+                     ACTION BUTTONS
+                ====================================== -->
+
+                <div class="action-row">
+
+                    <button type="submit"
+                            class="submit-btn">
+
+                        Analyze Paper
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- =================================================
+         RIGHT SECTION
+    ================================================== -->
+
+    <section class="info-section">
+
+        <!-- =============================================
+             CARD 1
+        ============================================== -->
+
+        <div class="info-card">
+
+            <div class="info-label">
+                Output
+            </div>
+
+            <h3>
+                Structured Technical Interpretation
+            </h3>
+
+        </div>
+
+        <!-- =============================================
+             CARD 2
+        ============================================== -->
+
+        <div class="info-card">
+
+            <div class="info-label">
+                Generates
+            </div>
+
+            <h3>
+                Summary,
+                Architecture,
+                Tech Stack,
+                Engineering Workflow,
+                Folder Structure
+            </h3>
+
+        </div>
+
+        <!-- =============================================
+             CARD 3
+        ============================================== -->
+
+        <div class="info-card">
+
+            <div class="info-label">
+                Designed For
+            </div>
+
+            <h3>
+                Developers,
+                Researchers,
+                Engineering Students,
+                Startup Builders
+            </h3>
+
+        </div>
+
+        <!-- =============================================
+             CARD 4
+        ============================================== -->
+
+        <div class="info-card">
+
+            <div class="info-label">
+                Powered By
+            </div>
+
+            <h3>
+                AI-driven PDF parsing,
+                metadata extraction,
+                markdown rendering,
+                and intelligent interpretation
+            </h3>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

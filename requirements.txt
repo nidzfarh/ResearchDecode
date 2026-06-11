@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+google-generativeai
+PyPDF2
+python-dotenv
+markdown
+xhtml2pdf
+gunicorn
