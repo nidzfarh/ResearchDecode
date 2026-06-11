@@ -106,7 +106,7 @@ def upload():
 
     file.save(filepath)
     paper_text = extract_text(filepath)
-    paper_text = paper_text[:4000]
+    paper_text = paper_text[:8000]
     pdf_metadata = extract_metadata(filepath)
     ai_output = generate_response(paper_text)
     # SAVE TO DATABASE
